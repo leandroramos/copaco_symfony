@@ -43,5 +43,36 @@ class Rede
     /**
       * @ORM\Column(type="string")
       */
-    private $cidr;    
+    private $cidr;
+
+
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function getIprede()
+    {
+        return $this->iprede;
+    }
+
+    public function setIprede($iprede)
+    {
+        $this->iprede = $iprede;
+    }
+
+    public function getCidr()
+    {
+        return $this->cidr;
+    }
+
+    public function setCidr($cidr)
+    {
+        $this->cidr = $cidr;
+    }
 }
