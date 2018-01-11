@@ -62,7 +62,11 @@
     },
     "extra": {
         "symfony": {
+<<<<<<< HEAD
             "id": "01C3GHNCMTFJCXHMNX5FE8PNRM",
+=======
+            "id": "01C3GJ4R925GMJNHPMK83ZYC4P",
+>>>>>>> d40e5e633154ba7cb51badc77bcb2f5c87aec518
             "allow-contrib": false
         }
     }
