@@ -18,4 +18,5 @@ Sistema de controle doparque computacional das unidades da USP
 ## Procedimentos de Deploy
     - composer install
     - php bin/console doctrine:migrations:migrate
+
    
