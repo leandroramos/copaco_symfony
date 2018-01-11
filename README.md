@@ -14,3 +14,8 @@ Sistema de controle doparque computacional das unidades da USP
     - PHP (Symfony Framework)
 * Banco de dados
     - PostgreSQL, MySQL ou SQLite
+
+## Procedimentos de Deploy
+    - composer install
+    - php bin/console doctrine:migrations:migrate
+   
