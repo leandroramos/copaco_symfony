@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollections;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RedeRepository")
  */
 class Rede
 {
+    public function __construct()
+    {
+        $this->equipamentos = new ArrayCollections();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,6 +26,11 @@ class Rede
     {
         return $this->id;
     }
+
+    /**
+      * @ORM\OneToMany(targetEntity="Equipamento",mappedBy="rede")
+      */
+    private $equipamentos;
     
     /**
       * @ORM\Column(type="string")

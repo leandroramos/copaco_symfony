@@ -37,9 +37,15 @@ class Equipamento
     private $local;
 
     /**
-    * @ORM\Column(type="datetimetz")
+     * @ORM\Column(type="datetimetz")
      */
     private $vencimento;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Rede", inversedBy="equipamentos")
+     * @ORM\JoinColumn(nullable=true) 
+     */
+    private $rede;
 
     public function getPatrimonio()
     {
