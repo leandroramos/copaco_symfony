@@ -47,6 +47,18 @@ class Equipamento
      */
     private $rede;
 
+    public function getRede()
+    {
+        return $this->rede;
+    }
+
+    public function setRede($rede)
+    {
+        $this->rede = $rede;
+    }
+
+ 
+
     public function getPatrimonio()
     {
         return $this->patrimonio;
