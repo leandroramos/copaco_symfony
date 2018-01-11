@@ -15,6 +15,24 @@ class Rede
      * @ORM\Column(type="integer")
      */
     private $id;
+<<<<<<< HEAD
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $nome;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $iprede;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $cidr;
+
+    // add your own fields
+}
+
+=======
    
     public function getId()
     {
@@ -76,3 +94,4 @@ class Rede
         $this->cidr = $cidr;
     }
 }
+>>>>>>> d40e5e633154ba7cb51badc77bcb2f5c87aec518
