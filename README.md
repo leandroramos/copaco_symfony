@@ -1,22 +1,21 @@
-# USPDev - Controle do Parque Computacional 
 
-Sistema de controle doparque computacional das unidades da USP
+banco de dados:
 
-## Objetivo
+    create user paco with password 'paco';
+    create database paco with owner paco;
 
-* Ser o primeiro sistema das oficinas a serem realizadas com desenvolvedores PHP interessados em boas práticas de desenvolvimento.
-* Integrar os desenvolvedores de diversas unidades da USP, formando uma comunidade com foco no desenvolvimento de soluções utilizando software livre.
 
-## Tecnologias utilizadas
+    composer installl
+    yarn run encore dev
+    yarn run encore dev --watch
 
-* Frontend e Backend
-    - HTML, CSS, JS
-    - PHP (Symfony Framework)
-* Banco de dados
-    - PostgreSQL, MySQL ou SQLite
+    ./bin/console doctrine:migrations:migrate
 
-## Procedimentos de Deploy
-    - composer install
-    - php bin/console doctrine:migrations:migrate
 
-   
+    ./bin/console security:encode-password
+
+    insert into local_user values (1,'admin','$2y$13$iY27ArIxc7DF2jyop.A90./nklpNyAjmAtla.k5zvH2HxXO4CvhZm','{"ROLE_ADMIN": "ROLE_ADMIN"}' );
+    insert into local_user values (2,'user','$2y$13$qTlNiepx0m3U9tec/KlrIenGrPOZqZs6K2RQvNM/S9q2wV7.m/kui','{"ROLE_USER": "ROLE_USER"}' );
+
+
+

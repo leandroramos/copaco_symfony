@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 class="page-header"> {{equipamento.patrimonio}} </h1>
+
+<ul>
+<li>{{equipamento.ip}} </li>
+<li> local: {{equipamento.local}}
+<li> data de vencimento: {{equipamento.vencimento| date('d/m/Y')}}
+
+<br> <a href="{{ path('equipamento_edit', { 'id': equipamento.id }) }}">Editar</a>
+ <a href="{{ path('equipamento_delete_confirm', { 'id': equipamento.id }) }}"> Delete </a>
+</ul>
+
+{% endblock %}

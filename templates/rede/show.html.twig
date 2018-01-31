@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="page-header"> rede {{ rede.nome }}</h1>
+    <ul>
+    <li>cidr: {{rede.cidr}}</li>
+    <li>ip rede: {{rede.iprede}}</li>
+    </ul>
+ <br> <a href="{{ path('rede_edit', { 'id': rede.id }) }}">Editar</a>
+ <a href="{{ path('rede_delete_confirm', { 'id': rede.id }) }}"> Delete </a>
+
+ <h2>Equipamentos alocados nesta rede</h2>
+
+ <ul>
+ {% for equipamento in rede.equipamentos %}
+     <li> {{equipamento.macaddress}}: {{equipamento.ip}} </li>
+ {% endfor %}
+ </ul>
+ {% endblock %}
+
+

@@ -3,9 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EquipamentoRepository")
+ * @UniqueEntity(fields={"macaddress"}, message="Mac já cadastrado!")
  */
 class Equipamento
 {
@@ -15,68 +20,93 @@ class Equipamento
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
+    // add your own fields
+
     /**
-    * @ORM\Column(type="string")
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $descricaosempatrimonio;
+    public function getDescricaosempatrimonio()
+    {
+        return $this->descricaosempatrimonio;
+    }
+
+    public function setDescricaosempatrimonio($descricaosempatrimonio)
+    {
+        $this->descricaosempatrimonio = $descricaosempatrimonio;
+    }
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $naopatrimoniado;
+    public function getNaopatrimoniado()
+    {
+        return $this->naopatrimoniado;
+    }
+
+    public function setNaopatrimoniado($naopatrimoniado)
+    {
+        $this->naopatrimoniado = $naopatrimoniado;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $patrimonio;
-    
+
+    public function __toString()
+    {
+        return $this->patrimonio;
+    }
+
     /**
-    * @ORM\Column(type="string")
-     */
-    private $ip;
-    
-    /**
-    * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank
+     * @CustomAssert\MacAddress
      */
     private $macaddress;
-    
+
     /**
-    * @ORM\Column(type="string")
+     * @ORM\Column(type="string")
+     *  @Assert\NotBlank()
      */
     private $local;
 
     /**
-     * @ORM\Column(type="datetimetz")
+     * @ORM\Column(name="vencimento", type="date")
+     * @Assert\NotBlank()
      */
     private $vencimento;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Rede", inversedBy="equipamentos")
-     * @ORM\JoinColumn(nullable=true) 
+     * @ORM\Column(name="ip", type="string", length=15,nullable=true)
+     * @CustomAssert\Ip()
      */
-    private $rede;
+    private $ip;
 
-    public function getRede()
+    /*** get e set ***/
+    public function getId()
     {
-        return $this->rede;
+        return $this->id;
     }
 
-    public function setRede($rede)
+    /* patrimonio */
+    public function setPatrimonio($patrimonio)
     {
-        $this->rede = $rede;
+        $this->patrimonio = $patrimonio;
     }
-
- 
 
     public function getPatrimonio()
     {
         return $this->patrimonio;
     }
 
-    public function setPatrimonio($patrimonio)
+    /* macaddress */
+    public function setMacaddress($macaddress)
     {
-        $this->patrimonio = $patrimonio;
-    }
-
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
+        $this->macaddress = $macaddress;
     }
 
     public function getMacaddress()
@@ -84,9 +114,10 @@ class Equipamento
         return $this->macaddress;
     }
 
-    public function setMacaddress($macaddress)
+    /* local */
+    public function setLocal($local)
     {
-        $this->macaddress = $macaddress;
+        $this->local = $local;
     }
 
     public function getLocal()
@@ -94,9 +125,10 @@ class Equipamento
         return $this->local;
     }
 
-    public function setLocal($local)
+    /* vencimento */
+    public function setVencimento($vencimento)
     {
-        $this->local = $local;
+        $this->vencimento = $vencimento;
     }
 
     public function getVencimento()
@@ -104,8 +136,31 @@ class Equipamento
         return $this->vencimento;
     }
 
-    public function setVencimento($vencimento)
+    /* ip */
+    public function setIp($ip)
     {
-        $this->vencimento = $vencimento;
+        $this->ip = $ip;
+    }
+
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Rede", inversedBy="equipamentos")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $rede;
+
+    /* get e set */
+    public function setRede($rede)
+    {
+        $this->rede = $rede;
+    }
+
+    public function getRede()
+    {
+        return $this->rede;
     }
 }

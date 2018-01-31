@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 class="page-header">Equipamentos não alocados</h1>
+
+<ul>
+{% for equipamento in equipamentos %} 
+    <li> <a href="{{ path('equipamento_show', { 'id': equipamento.id }) }}"> {{equipamento.patrimonio}} - {{equipamento.macaddress}}</a> </li>
+{% endfor %}
+</ul>
+
+{% endblock  %}

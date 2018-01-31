@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 class="page-header">Redes</h1>
+
+    <ul class="list-group">
+    {% for rede in redes %}
+            <li class="list-group-item"> <a href="{{ path('rede_show',{'id': rede.id}) }}"> {{rede.nome}}
+                    <span class="badge">{{rede.equipamentos|length}} </span></li> 
+        
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

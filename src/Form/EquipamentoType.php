@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class EquipamentoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -14,9 +16,17 @@ class EquipamentoType extends AbstractType
         $builder
             ->add('patrimonio')
             ->add('macaddress')
+            ->add('naopatrimoniado')
             ->add('local')
-            ->add('vencimento')
             ->add('rede')
+            ->add('ip')
+            ->add('descricaosempatrimonio')    
+            ->add('vencimento',DateType::class,[
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker'],
+                'html5' => false,
+            ])    
+
         ;
     }
 

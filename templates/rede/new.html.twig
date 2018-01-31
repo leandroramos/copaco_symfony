@@ -1,0 +1,26 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 class="page-header">Cadastrar nova rede</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nome,{'label': 'Nome (exemplo: Prédio de Administração)'}) }}
+
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_row(form.iprede,{'label': 'IP da rede (exemplo: 192.168.0.0)'}) }}
+        </div>
+    </div>
+        
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_row(form.cidr,{'label': 'CIDR'}) }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Cadastrar </button>
+    {{ form_end(form) }}
+
+{% endblock %}

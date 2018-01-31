@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1 class="page-header"> Deletar mesmo a rede {{ rede.nome }}?</h1>
+
+{{ form_start(form) }}
+    <button type="submit">Deletar</button>
+{{ form_end(form) }}
+
+{% endblock %}

@@ -25,4 +25,23 @@ class EquipamentoRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function ativos()
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('e')
+        ->where('e.vencimento >= :now')->setParameter('now', $now)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function ativosSql()
+    {
+        $now_obj = new \DateTime();
+        $now = $now_obj->format('Y-m-d H:i:s');
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT * FROM equipamento e WHERE e.vencimento >= :now';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['now' => $now]);
+        return $stmt->fetchAll();
+    }
 }

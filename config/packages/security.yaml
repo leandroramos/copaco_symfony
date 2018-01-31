@@ -1,0 +1,33 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+         App\Entity\LocalUser: bcrypt
+
+    providers:
+        database_users:
+            entity: { class: App\Entity\LocalUser, property: username }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login: 
+                login_path: /login
+                check_path: /login
+            logout: 
+                path: /logout
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dhcpd.conf, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/rede/new, roles: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_USER }
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # https://symfony.com/doc/current/security/form_login_setup.html

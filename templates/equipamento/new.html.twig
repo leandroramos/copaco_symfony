@@ -1,9 +1,67 @@
-<html>
-<body>
-Cadastro de equipamento:
- {{ form_start(form) }}
-   {{ form_widget(form)  }}
-   <input type="submit" value="SAVE!!!!" /> 
-  {{ form_end(form) }}
-</body>
-</html>
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="page-header"> {{ title }} </h1>
+
+<div class="row">
+    <div class="col-md-6">
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.macaddress, {'label': 'MAC Address'}) }}
+            </div>
+        </div>
+
+        <div>
+            {{ form_row(form.naopatrimoniado, {'label': 'Equipamento não patrimoniado?'}) }}
+        </div>
+        
+        <div class="row patrimonio">
+            <div class="col-md-3">
+                {{ form_row(form.patrimonio) }}
+            </div>
+        </div>
+
+        <div class="descricaosempatrimonio">
+            {{ form_row(form.descricaosempatrimonio, {'label': 'Descrição para equipamentos não patrimoniados'}) }}
+        </div>
+
+        {{ form_row(form.local) }}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.vencimento) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_row(form.rede) }}
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" id="fixar_ip" name="fixar_ip"> 
+            <label>Deseja fixar um IP?</label>
+        </div>
+
+        <div class="ip row">
+            <div class="col-md-4">
+                {{ form_row(form.ip, {'label': 'IP fixo'}) }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Enviar </button>
+    {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/equipamento.js') }}"> </script>
+{% endblock %}
